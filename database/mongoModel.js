@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/badapples-reviews');
+const db = require('../database/mongoIndex.js');
 
-const criticSchema = mongoose.Schema({
+const criticSchema = new mongoose.Schema({
   id: Number,
   name: String,
   topCritic: Number,
@@ -9,7 +9,7 @@ const criticSchema = mongoose.Schema({
   picture: String
 });
 
-const reviewSchema = mongoose.Schema({
+const reviewSchema = new mongoose.Schema({
   id: Number,
   criticId: Number,
   text: String,
@@ -18,8 +18,8 @@ const reviewSchema = mongoose.Schema({
   date: String
 });
 
-const Critic = mongoose.model('critic', criticSchema);
-const Review = mongoose.model('review', reviewSchema);
+let Critic = mongoose.model('critic', criticSchema);
+let Review = mongoose.model('review', reviewSchema);
 
 module.exports = Critic;
 module.exports = Review;
