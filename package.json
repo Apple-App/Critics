@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon server/server.js",
-    "build": "webpack -d --watch",
+    "dev-build": "webpack -d --watch",
+    "build": "webpack -p",
     "dev": "concurrently \"npm start\" \"npm run build\" ",
     "set-port": "sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 9003"
   },
@@ -22,15 +23,20 @@
   "homepage": "https://github.com/Themyscira19/Critics#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "csv-writer": "^1.2.0",
     "express": "^4.16.4",
+    "faker": "^4.1.0",
     "fs": "0.0.1-security",
     "html-webpack-plugin": "^3.2.0",
+    "mongoose": "^5.4.2",
     "mysql": "^2.16.0",
+    "node": "^11.6.0",
     "nodemon": "^1.18.9",
     "path": "^0.12.7",
     "react": "^16.7.0",
     "react-columns": "^1.2.0",
     "react-dom": "^16.7.0",
+    "sequelize": "^4.42.0",
     "webpack": "^4.28.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
