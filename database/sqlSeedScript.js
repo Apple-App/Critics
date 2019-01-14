@@ -28,73 +28,80 @@ const reviewsCsvWriter = createCsvwriter({
   ]
 });
 
-const batchSize = 10000;
-const batches = 500;
-let totalReviewCount = 0;
-let totalCriticCount = 0;
-let index = 0;
-let currCriticBatch = 0;
-let currReviewBatch = 0;
-
-const writeReviewsData = () => {
-  let reviewsArray = null;
-  reviewsArray = generateReviewsData(batchSize, index);
-
-  reviewsCsvWriter.writeRecords(reviewsArray)
-    .then(() => {
-      if (currReviewBatch <= batches) {
-        currReviewBatch++;
-        if (totalReviewCount === (batches * batchSize)) {
-          console.log(performance.now() - time);
-        }
-        writeReviewsData();
-      }
-    })
-    .catch(err => console.log('Error writing review CSV', err));
-}
+const criticBatchSize = 100, criticBatches = 100;
+const reviewBatchSize = 100, reviewBatches = 2000;
+let totalReviewCount = 0, currReviewBatch = 0;
+let totalCriticCount = 0, currCriticBatch = 0;
 
 const writeCriticsData = () => {
   let criticsArray = null;
-  criticsArray = generateCriticsData(batchSize, index);
+  criticsArray = generateCriticsData(criticBatchSize);
  
   criticsCsvWriter.writeRecords(criticsArray)
     .then(() => {
-      if (currCriticBatch <= batches) {
+      if (currCriticBatch < criticBatches) {
         currCriticBatch++;
-        if (totalCriticCount === (batches * batchSize)) {
+        if (totalCriticCount === (criticBatches * criticBatchSize)) {
           console.log(performance.now() - time);
         }
-        writeCriticsData();
+        if (totalCriticCount < (criticBatches * criticBatchSize)) {
+          writeCriticsData();
+        }
       }
     })
     .catch(err => console.log('Error writing critic CSV', err));
 }
 
-const generateCriticsData = (batchSize, index) => {
-    let criticsArray = [];
-    
-    for (let i = index + (currCriticBatch * batchSize); i < (batchSize + (currCriticBatch * batchSize)); i++) {
-        let criticsItem = {};
-        totalCriticCount++;
+const generateCriticsData = (criticBatchSize) => {
+  let criticsArray = [];
+  
+  for (let i = currCriticBatch * criticBatchSize; i < (criticBatchSize + (currCriticBatch * criticBatchSize)); i++) {
+      let criticsItem = {};
+      totalCriticCount++;
 
-        let num1 = faker.random.number({ max: 1 });
-        const picture = ["http://dummyimage.com/100x100.jpg/dddddd/000000", "http://dummyimage.com/100x100.jpg/cc0000/ffffff"];
+      let num1 = faker.random.number({ max: 1 });
+      const picture = ["http://dummyimage.com/100x100.jpg/dddddd/000000", "http://dummyimage.com/100x100.jpg/cc0000/ffffff"];
 
-        criticsItem.id = i;
-        criticsItem.name = faker.name.findName();
-        criticsItem.topCritic = num1;
-        criticsItem.publisher = faker.company.companyName();
-        criticsItem.picture = picture[num1];
+      criticsItem.id = i;
+      criticsItem.name = faker.name.findName();
+      criticsItem.topCritic = num1;
+      criticsItem.publisher = faker.company.companyName();
+      criticsItem.picture = picture[num1];
 
-        criticsArray.push(criticsItem);
-    }
-    return criticsArray;
+      criticsArray.push(criticsItem);
+  }
+  return criticsArray;
 }
 
-const generateReviewsData = (batchSize, index) => {
+const writeReviewsData = () => {
+  let reviewsArray = null;
+  reviewsArray = generateReviewsData(reviewBatchSize);
+
+  reviewsCsvWriter.writeRecords(reviewsArray)
+    .then(() => {
+      if (currReviewBatch < reviewBatches) {
+        currReviewBatch++;
+        if (totalReviewCount === (reviewBatches * reviewBatchSize)) {
+          console.log(performance.now() - time);
+        }
+        if (totalReviewCount < (reviewBatchSize * reviewBatches)) {
+        writeReviewsData();
+        }
+      }
+    })
+    .catch(err => console.log('Error writing review CSV', err));
+}
+
+
+// const criticBatchSize = 100, criticBatches = 100;
+// const reviewBatchSize = 100, reviewBatches = 2000;
+// let totalReviewCount = 0, currReviewBatch = 0;
+// let totalCriticCount = 0, currCriticBatch = 0;
+
+const generateReviewsData = (reviewBatchSize) => {
   let reviewsArray = [];
 
-  for (let i = index + (currReviewBatch * batchSize); i < (batchSize + (currReviewBatch * batchSize)); i++) {
+  for (let i = currReviewBatch * reviewBatchSize; i < (reviewBatchSize + (currReviewBatch * reviewBatchSize)); i++) {
       let reviewsItem = {};
       totalReviewCount++;
 
