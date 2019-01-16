@@ -1,26 +1,26 @@
 var client = require('./psqlIndex.js');
-let query = `DROP TABLE IF EXISTS critics;
+let query = `
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS critics;
 CREATE TABLE critics (
-  id serial primary key,
+  id SERIAL PRIMARY KEY,
   penName VARCHAR(64) NULL DEFAULT NULL,
   topCritic INTEGER NULL DEFAULT NULL,
   publisher VARCHAR(64) NULL DEFAULT NULL,
   picture VARCHAR(500) NULL DEFAULT NULL
 );
 
-DROP TABLE IF EXISTS reviews;
 CREATE TABLE reviews (
-  id serial primary key,
-  criticId INTEGER NULL DEFAULT NULL,
+  id SERIAL PRIMARY KEY,
+  criticId INTEGER REFERENCES critics(id),
   txt TEXT NULL DEFAULT NULL,
   rating INTEGER NULL DEFAULT NULL,
   movieId INTEGER NULL DEFAULT NULL,
-  pubDate VARCHAR(36) NULL DEFAULT NULL
+  pubDate VARCHAR(200) NULL DEFAULT NULL
 );
 
-ALTER TABLE reviews ADD FOREIGN KEY (criticId) REFERENCES critics (id);
-
 `
+
 // \copy critics from '/Library/PostgreSQL/11/data/critics.csv' DELIMITERS ',' CSV HEADER;
 // \copy reviews from '/Library/PostgreSQL/11/data//reviews.csv' DELIMITERS ',' CSV HEADER;
 console.time('done');

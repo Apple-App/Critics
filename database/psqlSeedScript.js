@@ -1,13 +1,12 @@
-var mysql = require('mysql');
-var connection = require('./index.js');
+var connection = require('./psqlIndex.js');
 const { performance } = require('perf_hooks');
 const time = performance.now();
 const faker = require('faker');
 const createCsvwriter = require('csv-writer').createObjectCsvWriter;
 
 const criticsCsvWriter = createCsvwriter({
-  // path: '/Library/PostgreSQL/11/data/critics.csv',
-  path: 'critics.csv',
+  path: '/Library/PostgreSQL/11/data/critics.csv',
+  // path: 'critics.csv',
   header: [
     { id: 'id', title: 'id' },
     { id: 'penName', title: 'penName' },
@@ -18,20 +17,20 @@ const criticsCsvWriter = createCsvwriter({
 });
 
 const reviewsCsvWriter = createCsvwriter({
-  // path: '/Library/PostgreSQL/11/data/reviews.csv',
-  path: 'reviews.csv',
+  path: '/Library/PostgreSQL/11/data/reviews.csv',
+  // path: 'reviews.csv',
   header: [
     { id: 'id', title: 'id' },
     { id: 'criticId', title: 'criticId' },
     { id: 'txt', title: 'txt' },
     { id: 'rating', title: 'rating' },
     { id: 'movieId', title: 'movieId' },
-    { id: 'date', title: 'date' }
+    { id: 'pubDate', title: 'pubDate' }
   ]
 });
 
-const criticBatchSize = 100, criticBatches = 10000;
-const reviewBatchSize = 100, reviewBatches = 100000;
+const criticBatchSize = 100, criticBatches = 101;
+const reviewBatchSize = 100, reviewBatches = 1000;
 let totalReviewCount = 0, currReviewBatch = 0;
 let totalCriticCount = 0, currCriticBatch = 0;
 
