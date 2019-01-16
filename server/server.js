@@ -1,6 +1,6 @@
 const express = require("express");
-const mysql = require("mysql");
-const connection = require("../database/index.js");
+// const mysql = require("mysql");
+// const connection = require("../database/index.js");
 const port = 9003;
 const app = express();
 const router = require("../router/router.js");

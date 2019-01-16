@@ -1,14 +1,20 @@
-const connection = require("../database/index.js");
+const client = require("../database/psqlIndex.js");
 
 exports.getReviews = function(req, res) {
   const movieId = req.params.number;
-  connection.query(
+  
+  client.query(
     `select * from reviews r inner join critics c on r.criticId = c.id where r.movieId = ${movieId}`,
+    // `select * from reviews where movieId = 2343`,
     (err, results) => {
       if (err) {
         res.sendStatus(500);
       } else {
-        res.send(results);
+        // let data = results.fields.map(field => {
+        //   return {review: field}
+        // });
+        // console.log(results.rows);
+        res.send(results.rows);
       }
     }
   );

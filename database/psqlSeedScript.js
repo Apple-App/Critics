@@ -102,7 +102,7 @@ const generateReviewsData = (reviewBatchSize) => {
 
     let num1 = faker.random.number({ max: 1 });
     let num2 = faker.random.number({ max: 10000 });
-    let num3 = faker.random.number({ min: 1, max: 10000000 })
+    let num3 = faker.random.number({ min: 1, max: 10000 })
 
     reviewsItem.id = i;
     reviewsItem.criticId = num2;
