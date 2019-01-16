@@ -6,7 +6,8 @@ const faker = require('faker');
 const createCsvwriter = require('csv-writer').createObjectCsvWriter;
 
 const criticsCsvWriter = createCsvwriter({
-  path: '/Library/PostgreSQL/11/data/critics.csv',
+  // path: '/Library/PostgreSQL/11/data/critics.csv',
+  path: 'critics.csv';
   header: [
     { id: 'id', title: 'id' },
     { id: 'penName', title: 'penName' },
@@ -17,7 +18,8 @@ const criticsCsvWriter = createCsvwriter({
 });
 
 const reviewsCsvWriter = createCsvwriter({
-  path: '/Library/PostgreSQL/11/data/reviews.csv',
+  // path: '/Library/PostgreSQL/11/data/reviews.csv',
+  path: 'reviews.csv';
   header: [
     { id: 'id', title: 'id' },
     { id: 'criticId', title: 'criticId' },
@@ -29,7 +31,7 @@ const reviewsCsvWriter = createCsvwriter({
 });
 
 const criticBatchSize = 100, criticBatches = 10000;
-const reviewBatchSize = 100, reviewBatches = 200000;
+const reviewBatchSize = 100, reviewBatches = 100000;
 let totalReviewCount = 0, currReviewBatch = 0;
 let totalCriticCount = 0, currCriticBatch = 0;
 
