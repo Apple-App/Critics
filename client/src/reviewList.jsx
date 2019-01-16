@@ -15,15 +15,15 @@ const ReviewList = ({ reviews }) => {
                   <img className="tomato" src="https://staticv2-4.rottentomatoes.com/static/images/icons/new-fresh.png" />
                 </span>
                 <div className="review-form">
-                <p className="text">{review.text}</p>
+                <p className="text">{review.txt}</p>
                 </div>
-                <div className="date">{review.date} </div>
+                <div className="date">{review.pubDate} </div>
               </div>
               <div className="critic-info">
                 <div className="picture">
                   <img src={review.picture} />
                 </div>
-                <div className="name">{review.name}</div>
+                <div className="name">{review.penName}</div>
                 <div className="publisher">{review.publisher}</div>
                 <div className="top-critic">&#9733; Top Critic</div>
               </div>
@@ -37,15 +37,15 @@ const ReviewList = ({ reviews }) => {
                   <img className="tomato" src="https://staticv2-4.rottentomatoes.com/static/images/icons/new-fresh.png" />
                 </span>
                 <div className="review-form">
-                <p className="text">{review.text}</p>
+                <p className="text">{review.txt}</p>
                 </div>
-                <div className="date">{review.date} </div>
+                <div className="date">{review.pubDate} </div>
               </div>
               <div className="critic-info">
                 <div className="picture">
                   <img src={review.picture} />
                 </div>
-                <div className="name">{review.name}</div>
+                <div className="name">{review.penName}</div>
                 <div className="publisher">{review.publisher}</div>
               </div>
             </div>
@@ -58,15 +58,15 @@ const ReviewList = ({ reviews }) => {
                   <img className="tomato" src="https://staticv2-4.rottentomatoes.com/static/images/icons/new-rotten.png" />
                 </span>
                 <div className="review-form">
-                <p className="text">{review.text}</p>
+                <p className="text">{review.txt}</p>
                 </div>
-                <div className="date">{review.date} </div>
+                <div className="date">{review.pubDate} </div>
               </div>
               <div className="critic-info">
                 <div className="picture">
                   <img src={review.picture} />
                 </div>
-                <div className="name">{review.name}</div>
+                <div className="name">{review.penName}</div>
                 <div className="publisher">{review.publisher}</div>
               </div>
             </div>
@@ -79,15 +79,15 @@ const ReviewList = ({ reviews }) => {
                   <img className="tomato" src="https://staticv2-4.rottentomatoes.com/static/images/icons/new-rotten.png" />
                 </span>
                 <div className="review-form">
-                <p className="text">{review.text}</p>
+                <p className="text">{review.txt}</p>
                 </div>
-                <div className="date">{review.date} </div>
+                <div className="date">{review.pubDate} </div>
               </div>
               <div className="critic-info">
                 <div className="picture">
                   <img src={review.picture} />
                 </div>
-                <div className="name">{review.name}</div>
+                <div className="name">{review.penName}</div>
                 <div className="publisher">{review.publisher}</div>
                 <div className="top-critic">&#9733; Top Critic</div>
               </div>
