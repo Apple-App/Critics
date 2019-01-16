@@ -27,14 +27,14 @@ CREATE TABLE `reviews` (
 
 ALTER TABLE `reviews` ADD FOREIGN KEY (criticId) REFERENCES `critics` (`id`);
 
-LOAD DATA LOCAL INFILE '/Users/sujinlee/Critics/database/critics.csv'
-INTO TABLE critics
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS
+-- LOAD DATA LOCAL INFILE '/Users/sujinlee/Critics/database/critics.csv'
+-- INTO TABLE critics
+-- FIELDS TERMINATED BY ','
+-- LINES TERMINATED BY '\n'
+-- IGNORE 1 ROWS
 
-LOAD DATA LOCAL INFILE '/Users/sujinlee/Critics/database/reviews.csv'
-INTO TABLE reviews
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS
+-- LOAD DATA LOCAL INFILE '/Users/sujinlee/Critics/database/reviews.csv'
+-- INTO TABLE reviews
+-- FIELDS TERMINATED BY ','
+-- LINES TERMINATED BY '\n'
+-- IGNORE 1 ROWS

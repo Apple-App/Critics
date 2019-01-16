@@ -1,16 +1,15 @@
-const mongoose = require('mongoose');
-const Critic = require('./mongoModel.js');
-const Review = require('./mongoModel.js');
-const faker = require('faker');
+var mysql = require('mysql');
+var connection = require('./index.js');
 const { performance } = require('perf_hooks');
 const time = performance.now();
+const faker = require('faker');
 const createCsvwriter = require('csv-writer').createObjectCsvWriter;
 
 const criticsCsvWriter = createCsvwriter({
-  path: '/Users/sujinlee/Critics/database/critics.csv',
+  path: '/Library/PostgreSQL/11/data/critics.csv',
   header: [
     { id: 'id', title: 'id' },
-    { id: 'name', title: 'name' },
+    { id: 'penName', title: 'penName' },
     { id: 'topCritic', title: 'topCritic' },
     { id: 'publisher', title: 'publisher' },
     { id: 'picture', title: 'picture' },
@@ -18,19 +17,19 @@ const criticsCsvWriter = createCsvwriter({
 });
 
 const reviewsCsvWriter = createCsvwriter({
-  path: '/Users/sujinlee/Critics/database/reviews.csv',
+  path: '/Library/PostgreSQL/11/data/reviews.csv',
   header: [
     { id: 'id', title: 'id' },
     { id: 'criticId', title: 'criticId' },
-    { id: 'text', title: 'text' },
+    { id: 'txt', title: 'txt' },
     { id: 'rating', title: 'rating' },
     { id: 'movieId', title: 'movieId' },
     { id: 'date', title: 'date' }
   ]
 });
 
-const criticBatchSize = 10000, criticBatches = 100;
-const reviewBatchSize = 10000, reviewBatches = 2000;
+const criticBatchSize = 100, criticBatches = 10000;
+const reviewBatchSize = 100, reviewBatches = 200000;
 let totalReviewCount = 0, currReviewBatch = 0;
 let totalCriticCount = 0, currCriticBatch = 0;
 
@@ -64,7 +63,7 @@ const generateCriticsData = (criticBatchSize) => {
     const picture = ["http://dummyimage.com/100x100.jpg/dddddd/000000", "http://dummyimage.com/100x100.jpg/cc0000/ffffff"];
 
     criticsItem.id = i;
-    criticsItem.name = faker.name.findName();
+    criticsItem.penName = faker.name.findName();
     criticsItem.topCritic = num1;
     criticsItem.publisher = faker.company.companyName();
     criticsItem.picture = picture[num1];
@@ -106,10 +105,10 @@ const generateReviewsData = (reviewBatchSize) => {
 
     reviewsItem.id = i;
     reviewsItem.criticId = num2;
-    reviewsItem.text = faker.lorem.paragraph();
+    reviewsItem.txt = faker.lorem.paragraph();
     reviewsItem.rating = num1;
     reviewsItem.movieId = num3;
-    reviewsItem.date = faker.date.recent();
+    reviewsItem.pubDate = faker.date.recent();
 
     reviewsArray.push(reviewsItem);
   }
@@ -118,9 +117,3 @@ const generateReviewsData = (reviewBatchSize) => {
 
 writeCriticsData();
 writeReviewsData();
-
-//const {exec} = child_process
-
-//Directly import CSV file into MongoDB:
-  //mongoimport -d Critics -c critics --type csv --file database/critics.csv --headerline
-  //mongoimport -d Critics -c reviews --type csv --file database/reviews.csv --headerline
