@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon server/server.js",
+    "prestart": "webpack",
+    "start": "node server/server.js",
     "dev-build": "webpack -d --watch",
     "build": "webpack -p",
     "dev": "concurrently \"npm start\" \"npm run build\" ",

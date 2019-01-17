@@ -5,8 +5,8 @@ const faker = require('faker');
 const createCsvwriter = require('csv-writer').createObjectCsvWriter;
 
 const criticsCsvWriter = createCsvwriter({
-  path: '/Library/PostgreSQL/11/data/critics.csv',
-  // path: 'critics.csv',
+  // path: '/Library/PostgreSQL/11/data/critics.csv',
+  path: '/var/lib/postgresql/10/main/critics.csv',
   header: [
     { id: 'id', title: 'id' },
     { id: 'penName', title: 'penName' },
@@ -17,8 +17,8 @@ const criticsCsvWriter = createCsvwriter({
 });
 
 const reviewsCsvWriter = createCsvwriter({
-  path: '/Library/PostgreSQL/11/data/reviews.csv',
-  // path: 'reviews.csv',
+  // path: '/Library/PostgreSQL/11/data/reviews.csv',
+  path: '/var/lib/postgresql/10/main/reviews.csv',
   header: [
     { id: 'id', title: 'id' },
     { id: 'criticId', title: 'criticId' },
@@ -29,8 +29,8 @@ const reviewsCsvWriter = createCsvwriter({
   ]
 });
 
-const criticBatchSize = 100, criticBatches = 101;
-const reviewBatchSize = 100, reviewBatches = 1000;
+const criticBatchSize = 10000, criticBatches = 100;
+const reviewBatchSize = 10000, reviewBatches = 2000;
 let totalReviewCount = 0, currReviewBatch = 0;
 let totalCriticCount = 0, currCriticBatch = 0;
 
@@ -102,7 +102,7 @@ const generateReviewsData = (reviewBatchSize) => {
 
     let num1 = faker.random.number({ max: 1 });
     let num2 = faker.random.number({ max: 10000 });
-    let num3 = faker.random.number({ min: 1, max: 10000 })
+    let num3 = faker.random.number({ min: 1, max: 1000000 })
 
     reviewsItem.id = i;
     reviewsItem.criticId = num2;
