@@ -1,6 +1,6 @@
 var pg = require('pg');
 // var connection = 'postgres://postgres: @localhost:5432/badapples';
-var connection = 'postgres://postgres: @172.31.19.98/badapples';
+var connection = 'postgres://postgres: @172.31.30.68/badapples';
 
 var client = new pg.Pool({connectionString : connection});
 
