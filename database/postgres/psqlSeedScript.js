@@ -30,7 +30,7 @@ const reviewsCsvWriter = createCsvwriter({
 });
 
 const criticBatchSize = 10000, criticBatches = 100;
-const reviewBatchSize = 10000, reviewBatches = 2000;
+const reviewBatchSize = 10000, reviewBatches = 1000;
 let totalReviewCount = 0, currReviewBatch = 0;
 let totalCriticCount = 0, currCriticBatch = 0;
 
