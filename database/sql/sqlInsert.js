@@ -1,4 +1,4 @@
-const mySQLConnection = require('./index.js');
+const mySQLConnection = require('../index.js');
 
 mySQLConnection.query(`SET bulk_insert_buffer_size= 1024 * 1024 * 256;`, (err, results) => {
     if (err) {

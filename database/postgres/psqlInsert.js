@@ -18,7 +18,6 @@ CREATE TABLE reviews (
   movieId INTEGER NULL DEFAULT NULL,
   pubDate VARCHAR(200) NULL DEFAULT NULL
 );
-
 `
 
 // \copy critics from '/Library/PostgreSQL/11/data/critics.csv' DELIMITERS ',' CSV HEADER;

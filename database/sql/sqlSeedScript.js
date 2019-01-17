@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var connection = require('./index.js');
+var connection = require('../index.js');
 const { performance } = require('perf_hooks');
 const time = performance.now();
 const faker = require('faker');

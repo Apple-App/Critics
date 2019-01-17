@@ -1,7 +1,7 @@
 var pg = require('pg');
 var connection = 'postgres://postgres: @localhost:5432/badapples';
 
-var client = new pg.Client(connection);
+var client = new pg.Pool({connectionString : connection});
 
 client.connect(err => {
     if (err) {

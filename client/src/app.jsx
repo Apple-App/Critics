@@ -22,7 +22,6 @@ export default class App extends React.Component {
       // .get(`http://ec2-18-218-155-141.us-east-2.compute.amazonaws.com/movies/${number}`)
       .get(`/movies/${number}`)
       .then(response => {
-        // console.log(response.data);
         this.setState({ reviews: response.data}, () => {
           console.log(this.state.reviews);
         })
@@ -31,7 +30,7 @@ export default class App extends React.Component {
         console.log("Failure getting reviews", err);
       });
   }
-
+  
   render() {
     return (
       <div>
