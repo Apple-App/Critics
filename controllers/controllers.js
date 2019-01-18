@@ -5,6 +5,7 @@ exports.getReviews = function(req, res) {
   
   client.query(
     `select * from reviews r inner join critics c on r.criticId = c.id where r.movieId = ${movieId}`,
+    // `select * from reviews r where r.id = ${movieId}`,
     (err, results) => {
       if (err) {
         res.sendStatus(500);

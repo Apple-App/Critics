@@ -18,6 +18,8 @@ CREATE TABLE reviews (
   movieId INTEGER NULL DEFAULT NULL,
   pubDate VARCHAR(200) NULL DEFAULT NULL
 );
+
+CREATE INDEX movieId_idx ON reviews (movieId);
 `
 
 // \copy critics from '/Library/PostgreSQL/11/data/critics.csv' DELIMITERS ',' CSV HEADER;
