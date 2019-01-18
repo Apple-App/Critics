@@ -19,8 +19,8 @@ export default class App extends React.Component {
 
   getReviews(number = 101) {
     axios
-      .get(`http://ec2-18-222-250-160.us-east-2.compute.amazonaws.com/movies/${number}`)
-      // .get(`/movies/${number}`)
+      // .get(`http://ec2-18-222-250-160.us-east-2.compute.amazonaws.com/movies/${number}`)
+      .get(`/movies/${number}`)
       .then(response => {
         this.setState({ reviews: response.data}, () => {
           console.log(this.state.reviews);
