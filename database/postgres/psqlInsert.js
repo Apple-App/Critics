@@ -21,7 +21,7 @@ CREATE TABLE reviews (
 
 CREATE INDEX movieId_idx ON reviews (movieId);
 `
-
+//CREATE INDEX movieId_idx ON reviews (movieId);
 // \copy critics from '/Library/PostgreSQL/11/data/critics.csv' DELIMITERS ',' CSV HEADER;
 // \copy reviews from '/Library/PostgreSQL/11/data//reviews.csv' DELIMITERS ',' CSV HEADER;
 console.time('done');
