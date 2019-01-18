@@ -3,7 +3,7 @@ var pg = require('pg');
 // var URI = process.env.PGURI !== undefined ? process.env.PGURI : 'postgres://postgres:\ @localhost:5432/badapples';
 
 var client = new pg.Pool({
-  host: '3.16.187.55',
+  host: process.env.PGURI,
   user: 'postgres',
   database: 'badapples'
 });
