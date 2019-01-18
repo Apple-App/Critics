@@ -1,8 +1,8 @@
 var pg = require('pg');
 
-var client = new pg.Pool({connectionString : connection});
-
 var URI = process.env.PGURI !== undefined ? process.env.PGURI : 'postgres://postgres: @localhost:5432/badapples';
+
+var client = new pg.Pool({connectionString : URI});
 
 client.connect(err => {
     if (err) {
