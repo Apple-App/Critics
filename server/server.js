@@ -9,7 +9,7 @@ var compression = require('compression');
 const morgan = require('morgan');
 
 app.use(compression());
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
